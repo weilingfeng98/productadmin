@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<!-- 修改说明: 1.修改pakcage的namespace属性,因为URL访问规则是: /namesapce/Entity/method.do 
+	2.根据你的包结构修改action节点的class属性 -->
+
+<struts>
+
+	<constant name="struts.devMode" value="false" />
+	<!-- struts的URL扩展名 -->
+	<constant name="struts.action.extension" value="do" />
+
+	<!-- 允许访问静态成员变量 -->
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true" />
+
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.enable.SlashesInActionNames" value="true" />
+	<!-- 文件上传 大小限制50M -->
+	<constant name="struts.multipart.maxSize" value="52428800"/>
+
+	<package name="custom-default" extends="struts-default">
+		<result-types>
+			<result-type name="direct"
+				class="cn.org.rapid_framework.struts2.dispatcher.DirectResult" />
+		</result-types>
+		<interceptors>
+			<!-- 提供视图渲染的共享变量拦截器 -->
+			<interceptor name="sharedRenderVariableInterceptor"
+				class="com.ny.b2b.common.struts2.interceptor.SharedRenderVariableInterceptor" />
+			<interceptor-stack name="customDefaultCrudStack">
+				<interceptor-ref name="paramsPrepareParamsStack" />
+				<!-- <interceptor-ref name="sharedRenderVariableInterceptor"/> -->
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="customDefaultCrudStack" />
+	</package>
+
+	<package name="sys" extends="custom-default" namespace="/sys">
+		<!-- 通过URL访问的路径是 /Entity/method.do -->
+		<!-- 缓存管理begin -->
+		<action name="cache/*" method="{1}"
+			class="com.ny.b2b.sys.action.CacheAction">
+			<result name="*" type="direct">通过Action直接返回，这一行无需修改</result>
+		</action>
+        <!-- 系统配置模块。 -->
+        <action name="config/*" method="{1}"
+                class="com.ny.b2b.sys.action.ConfigAction">
+            <result name="*" type="direct">通过Action直接返回，这一行无需修改</result>
+        </action>
+        <!--用户管理-->
+        <action name="user/*" method="{1}"
+                class="com.ny.b2b.user.action.UserInfoAction">
+            <result name="*" type="direct">通过Action直接返回，这一行无需修改</result>
+        </action>
+        <!-- 数据类型管理begin -->
+        <action name="basedata/*" method="{1}"
+                class="com.ny.b2b.sys.action.BasedataAction">
+            <result name="*" type="direct">通过Action直接返回，这一行无需修改</result>
+        </action>
+        <!-- 标准数据管理begin -->
+        <action name="datadeta/*" method="{1}"
+                class="com.ny.b2b.sys.action.BaseDatadetaAction">
+            <result name="*" type="direct">通过Action直接返回，这一行无需修改</result>
+        </action>
+    </package>
+
+    <!--登录相关-->
+    <package name="home" extends="custom-default" namespace="/">
+        <action name="home/*" method="{1}"
+                class="com.ny.b2b.common.action.HomeAction">
+            <result name="*" type="direct">通过Action直接返回，这一行无需修改</result>
+        </action>
+    </package>
+
+    <package name="goods" extends="custom-default" namespace="/goods">
+    	<!-- 商品信息 开始 -->
+        <action name="info/*" method="{1}" class="com.ny.b2b.goods.action.GoodsInfoAction">
+            <result name="*" type="direct">通过Action直接返回，这一行无需修改</result>
+        </action>
+        <!-- 商品信息 结束 -->
+        
+        <!-- 供应商 开始 -->
+         <action name="supplier/*" method="{1}" class="com.ny.b2b.goods.action.SupplierAction">
+            <result name="*" type="direct">通过Action直接返回，这一行无需修改</result>
+        </action>
+        <!-- 供应商 结束-->
+        
+        <!-- 供应商品牌  开始-->
+        <action name="brandinfo/*" method="{1}" class="com.ny.b2b.goods.action.BrandInfoAction">
+            <result name="*" type="direct">通过Action直接返回，这一行无需修改</result>
+        </action>
+        <!-- 供应商品牌  结束-->
+
+        <!-- 商品类目  开始-->
+        <action name="cate/*" method="{1}" class="com.ny.b2b.goods.action.GoodsCatAction">
+            <result name="*" type="direct">通过Action直接返回，这一行无需修改</result>
+        </action>
+        <!-- 商品类目  结束-->
+    </package>
+
+
+
+</struts>

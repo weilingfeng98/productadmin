@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd"
+	default-autowire="byName" default-lazy-init="false">
+
+	<bean id="joyHessianProxyFactory"
+		class="com.ny.b2b.common.hessian.client.JoyHessianProxyFactory" />
+
+	
+	<!-- 基础服务-->
+	<!--<bean id="baseService"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="proxyFactory" ref="joyHessianProxyFactory" />
+		<property name="serviceUrl" value="${productService.Url}/base" />
+		<property name="serviceInterface"
+			value="com.ny.b2b.common.hessian.service.BaseService" />
+	</bean>-->
+
+
+    <!--<bean id="cacheConfigService"
+          class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+        <property name="proxyFactory" ref="joyHessianProxyFactory" />
+        <property name="serviceUrl" value="${productService.Url}/cacheConfig"/>
+        <property name="serviceInterface"
+                  value="com.ny.b2b.hs.cache.service.CacheConfigService" />
+    </bean>
+
+    <bean id="cacheService"
+          class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+        <property name="proxyFactory" ref="joyHessianProxyFactory" />
+        <property name="serviceUrl" value="${productService.Url}/cacheService"/>
+        <property name="serviceInterface"
+                  value="com.ny.b2b.hs.cache.service.CacheService" />
+    </bean>
+-->
+
+
+</beans>

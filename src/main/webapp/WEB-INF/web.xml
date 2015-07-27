@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee http://java.sun.com/dtd/web-app_2_3.dtd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.4"
+		 xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	
+	<!-- session超时定义,单位为分钟 -->
+	<session-config>
+		<session-timeout>300</session-timeout>
+	</session-config>
+	
+	<!-- 默认首页定义 -->
+	<welcome-file-list>
+		<welcome-file>login.jsp</welcome-file>
+		<welcome-file>login.html</welcome-file>
+	</welcome-file-list>
+	
+	<!-- Error Page定义 -->
+	<error-page>
+		<error-code>500</error-code>
+		<location>/commons/error.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/commons/404.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>403</error-code>
+		<location>/commons/403.jsp</location>
+	</error-page>
+			 
+	<!-- Spring ApplicationContext配置文件的路径�,可使用通配符，多个路径用�1,号分隔
+	  此参数用于后面的Spring-Context loader -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath*:spring/*.xml</param-value>
+	</context-param>
+	
+	<!-- Character Encoding filter -->
+	<filter>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<filter-class>com.ny.b2b.common.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>LoggerMDCFilter</filter-name>
+		<filter-class>com.ny.b2b.common.filter.LoggerMDCFilter</filter-class>
+	</filter>
+	<filter-mapping>
+        <filter-name>LoggerMDCFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>LoggerMDCFilter</filter-name>
+        <url-pattern>*.jsp</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>LoggerMDCFilter</filter-name>
+        <url-pattern>*.rls</url-pattern>
+    </filter-mapping>
+
+
+
+
+    
+	<!--Spring ApplicationContext 载入 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!-- 使Spring支持request与session的scope,如:<bean id="loginAction" class="com.foo.LoginAction" scope="request"/> -->
+	<listener>
+	  <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+
+	<!-- Spring 刷新Introspector防止内存泄露 -->
+	<listener>
+		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+	</listener>
+	
+	<filter>
+	      <filter-name>struts2Filter</filter-name>
+	      <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+	</filter>
+    
+    <filter-mapping>
+        <filter-name>struts2Filter</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
+    
+	<security-constraint>  
+	   <web-resource-collection>
+	      <web-resource-name>token</web-resource-name>
+	      <url-pattern>/*</url-pattern>  
+	      <http-method>PUT</http-method>  
+				<http-method>DELETE</http-method>  
+				<http-method>HEAD</http-method>  
+				<http-method>OPTIONS</http-method>  
+				<http-method>TRACE</http-method>  
+	   </web-resource-collection>  
+	   <auth-constraint>
+	   </auth-constraint>
+	</security-constraint>  
+	<login-config>  
+	   <auth-method>BASIC</auth-method>  
+	</login-config>
+	
+	<servlet>
+	    <servlet-name>uploadFileServlet</servlet-name>
+	    <servlet-class>com.ny.b2b.system.fileupload.action.UploadFileServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+	    <servlet-name>uploadFileServlet</servlet-name>
+	    <url-pattern>/uploadFileServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>downloadServlet</servlet-name>
+		<servlet-class>com.ny.b2b.system.fileupload.action.DownloadServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>downloadServlet</servlet-name>
+		<url-pattern>/downloadServlet</url-pattern>
+	</servlet-mapping>
+
+
+    <!-- 验证码 -->
+    <servlet>
+        <servlet-name>randomCode</servlet-name>
+        <servlet-class>com.ny.b2b.common.servlet.RandomCode</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>randomCode</servlet-name>
+        <url-pattern>/servlet/random.jpeg</url-pattern>
+    </servlet-mapping>
+
+
+</web-app>
+

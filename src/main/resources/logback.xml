@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	debug="true" 	启动时输出配置加载信息
+	scan="true" 	默认每分钟自动扫描
+	scanPeriod="30 seconds" 设置每30秒自动扫描,若没有指定具体单位则以milliseconds为标准(单位:milliseconds, seconds, minutes or hours)
+-->
+<configuration scan="true" scanPeriod="10 seconds">
+
+	<contextName>crm</contextName>
+	
+	<!--tomcat webapps路径-->
+	<property name="logback.logs.path" value="/data/web/logs/" />
+	<!--项目名-->
+	<property name="logback.project.name" value="productadmin" />
+	<timestamp key="byDay" datePattern="yyyyMMdd"/>
+	
+	<!-- 输出非JOY平台的日志信息 -->
+	<appender name="stdout.default" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder charset="UTF-8">
+			<pattern>[%level]%date{yyyy-MM-dd HH:mm:ss}[%X{user.name}|%X{req.remoteAddr}|%X{req.id}|%X{req.serverIp}|%X{req.context}|%X{op.module}|%X{op.infoId}|%X{req.requestURI}]%logger|%msg|%X{op.result}%n</pattern>
+		</encoder>
+	</appender>
+	
+	<!-- 业务日志 -->
+	<appender name="biz.log" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+	      <fileNamePattern>${logback.logs.path}${logback.project.name}/biz_%d{yyyyMMdd}.log</fileNamePattern>    
+	      <maxHistory>15</maxHistory>     
+    	</rollingPolicy>
+	    <filter class="ch.qos.logback.core.filter.EvaluatorFilter">
+	    	<evaluator>
+	    		<expression>mdc.get("op.type")!=null</expression>
+	    	</evaluator>
+	    	<OnMatch>ACCEPT</OnMatch>
+	    	<OnMismatch>DENY</OnMismatch>
+	    </filter>
+		<encoder charset="UTF-8">
+			<pattern>[%level]%date{yyyy-MM-dd HH:mm:ss}|%X{user.id}|%X{req.remoteAddr}|%X{req.id}|%X{req.serverIp}|%X{req.context}|%X{op.module}|%X{op.infoId}|%X{req.requestURI}|%logger|%msg|%X{op.result}%n</pattern>
+		</encoder>
+	</appender>
+	
+	<!-- 执行时间日志 -->
+	<appender name="time.log" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+	      <fileNamePattern>${logback.logs.path}${logback.project.name}/time_%d{yyyyMMdd}.log</fileNamePattern>    
+	      <maxHistory>15</maxHistory>     
+    	</rollingPolicy>
+	    <filter class="ch.qos.logback.core.filter.EvaluatorFilter">
+	    	<evaluator>
+	    		<expression>mdc.get("op.time")!=null</expression>
+	    	</evaluator>
+	    	<OnMatch>ACCEPT</OnMatch>
+	    	<OnMismatch>DENY</OnMismatch>
+	    </filter>
+		<encoder charset="UTF-8">
+			<pattern>[%level]%date{yyyy-MM-dd HH:mm:ss}|%X{req.requestURI}|%logger|%X{op.method}|%X{op.module}|%msg%n</pattern>
+		</encoder>
+	</appender>
+	
+	<!-- 所有系统日志 -->
+	<appender name="all.log" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+	      <fileNamePattern>${logback.logs.path}${logback.project.name}/all_%d{yyyyMMdd}.log</fileNamePattern>    
+	      <maxHistory>15</maxHistory>     
+    	</rollingPolicy>
+		<encoder charset="UTF-8">
+			<pattern>[%level]%date{yyyy-MM-dd HH:mm:ss}[%X{user.id}|%X{req.remoteAddr}|%X{req.id}|%X{req.serverIp}|%X{req.context}|%X{op.module}|%X{op.infoId}|%X{req.requestURI}]%logger|%msg|%X{op.result}%n</pattern>
+		</encoder>
+	</appender>
+	
+	<!-- 只记录错误日志 -->
+	<appender name="error.log" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+	      <fileNamePattern>${logback.logs.path}${logback.project.name}/error_%d{yyyyMMdd}.log</fileNamePattern>    
+	      <maxHistory>15</maxHistory>     
+    	</rollingPolicy>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">   
+	      <level>ERROR</level>   
+	      <onMatch>ACCEPT</onMatch>   
+	      <onMismatch>DENY</onMismatch>   
+	    </filter>
+		<encoder charset="UTF-8">
+			<pattern>[%level]%date{yyyy-MM-dd HH:mm:ss}[%X{user.id}|%X{req.remoteAddr}|%X{req.id}|%X{req.serverIp}|%X{req.context}|%X{op.module}|%X{op.infoId}|%X{req.requestURI}]%logger|%msg|%X{op.result}%n</pattern>
+		</encoder>
+	</appender>
+		
+	<!-- 打印业务日志及执行时间日志 -->
+    <logger name="com.ny.b2b" level="INFO">
+		<appender-ref ref="biz.log"/>
+		<appender-ref ref="time.log"/>
+    </logger>
+        
+	<root level="INFO">
+		<appender-ref ref="stdout.default"/>
+		<appender-ref ref="all.log"/>
+		<appender-ref ref="error.log"/>
+	</root>
+</configuration>

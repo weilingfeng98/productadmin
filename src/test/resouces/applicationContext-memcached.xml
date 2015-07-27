@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd"
+	default-lazy-init="true">
+
+    <!-- 缓存 -->
+    <bean id="joyMemcachedClient" class="com.ny.b2b.common.cache.JoyMemcachedClient">
+        <!-- 设置Memcached集群 -->
+        <property name="memcachedNodes" value="192.168.1.253:11211" />
+        <!-- 缩短Timeout时间到200毫秒 -->
+        <property name="operationTimeout" value="500" />
+        <property name="enableLocalCache" value="false"/>
+    </bean>
+
+
+</beans>

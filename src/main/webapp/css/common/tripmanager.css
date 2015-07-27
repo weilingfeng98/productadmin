@@ -1,0 +1,339 @@
+﻿.tripMamager_sidenav {
+	float: left;
+	width: 168px;
+	margin-right: 10px;
+	padding: 5px 0px 10px;
+	border: 1px solid #B42656;
+}
+.tripMamager_sidenav_submenu {
+	margin: 0;
+}
+.tripMamager_sidenav_submenu li {
+	padding: 6px 0 6px 35px;
+	font-size: 14px;
+	font-weight: bold;
+	border-top: 1px solid #ddd;
+}
+.tripMamager_sidenav_submenu li.bdnone {
+	border: 0 none;
+}
+.tripMamager_sidenav_submenu li.current {
+	color: #FFF;
+	background: url(../../images/common/un_bg_gradients.png) repeat-x 0 -260px #BB3260;
+}
+.tripManager_mainbody {
+	float: left;
+	width: 768px;
+}
+.tit01_tripManager {
+	padding-left: 20px;
+	background: url(../../images/common/bg_16x16.gif) no-repeat 0 -350px;
+}
+.tit01_tripManager h3 {
+	font-weight: bold;
+	font-size: 14px;
+}
+.tit01_tripManager span {
+	color: #999;
+	font-weight: normal;
+	font-size: 12px;
+}
+.box01_tripManager {
+	margin-bottom: 10px;
+	padding: 10px 0;
+	border-top: 2px solid #B42656;
+}
+.route_title {
+	padding: 10px;
+	font-size: 14px;
+	font-weight: bold;
+	background-color: #FFECE5;
+}
+.route_title a {
+	font-weight: normal;
+}
+.route_title span {
+	color: #999;
+	font-weight: normal;
+	font-size: 12px;
+}
+
+/*机票订单展开状态*/
+a.addspread {
+	width: 100px;
+	height: 22px;
+	margin: 0 0 10px auto;
+	padding-left: 20px;
+	color: #3565A3;
+	font-weight: bold;
+	cursor: pointer;
+	background: url(../../images/common/bg_16x16.gif) no-repeat 0 -665px;
+}
+a.addspread:hover {
+	color: #3565A3;
+}
+a.packup {
+	width: 90px;
+	height: 22px;
+	padding-left: 20px;
+	color: #3565A3;
+	font-size: 12px;
+	font-weight: bold;
+	cursor: pointer;
+	background: url(../../images/common/bg_16x16.gif) no-repeat 0 -685px;
+}
+a.packup :hover {
+	color: #3565A3;
+}
+
+/*table03*/
+.table03 {
+	border: 1px solid #ddd;
+}
+.table03 th, .table03 td {
+	padding: 7px 3px;
+}
+.table03 th {
+	background-color: #f0f0f0;
+	border-bottom: 1px solid #e6e6e6;
+}
+.table03 td {
+	border-bottom: 1px dotted #ddd;
+}
+/*table04*/
+.table04 {
+	margin-bottom: 5px;
+	border: 1px solid #ddd;
+}
+.table04 th {
+	width: 80px;
+	padding: 7px;
+	font-weight: normal;
+	text-align: right;
+	vertical-align: top;
+	border-bottom: 1px solid #ddd;
+	border-left: 1px solid #ddd;
+	background-color: #F5F5F5;
+}
+.table04 td {
+	padding: 5px 3px;
+	vertical-align: top;
+	border-bottom: 1px solid #ddd;
+	background-color: #F5F5F5;
+}
+.table04 input, .table04 td select {
+	vertical-align: middle;
+	padding: 2px;
+}
+.table04 b {
+	color: #DE6051;
+}
+/*table05*/
+.table05 {
+	margin-bottom: 5px;
+	border: 1px solid #ddd;
+}
+.table05 th {
+	width: 80px;
+	padding: 7px;
+	font-weight: normal;
+	text-align: right;
+	vertical-align: top;
+	border: 1px solid #ddd;
+	background-color: #F5F5F5;
+}
+.table05 td {
+	padding: 5px 3px;
+	vertical-align: top;
+	border: 1px solid #ddd;
+}
+.table05 input, .table05 td select {
+	padding: 2px;
+	vertical-align: middle;
+}
+.table05 b {
+	color: #DE6051;
+}
+/* 列表翻页 */
+.pages {
+	height: 20px;
+	padding: 4px 10px;
+	line-height: 18px;
+	border: 1px solid #dedede;
+	background: url(../../images/common/un_bg_gradients.png) repeat-x 0 0;
+}
+.pages a {
+	display: inline-block;
+	width: 17px;
+	height: 17px;
+	vertical-align: middle;
+}
+.pagehome {
+	background: url(../../images/tripmanager/btn.png) no-repeat 0 0px;
+}
+.pageend {
+	background: url(../../images/tripmanager/btn.png) no-repeat -51px 0px;
+}
+.pageup {
+	background: url(../../images/tripmanager/btn.png) no-repeat -17px 0px;
+}
+.pagedown {
+	background: url(../../images/tripmanager/btn.png) no-repeat -34px 0px;
+}
+/*新增航程*/
+a.addRoute {
+	display: block;
+	width: 100px;
+	height: 22px;
+	margin: 0 0 10px auto;
+	padding-left: 20px;
+	color: #3565A3;
+	font-weight: bold;
+	cursor: pointer;
+	background: url(../../images/common/bg_16x16.gif) no-repeat 0 -65px;
+}
+a.addRoute:hover {
+	color: #3565A3;
+}
+a.deleteRoute {
+	float:right;
+	width: 90px;
+	height: 22px;
+	padding-left: 20px;
+	color: #3565A3;
+	font-size:12px;
+	font-weight: bold;
+	cursor: pointer;
+	background: url(../../images/common/bg_16x16.gif) no-repeat 0 -34px;
+}
+a.deleteRoute :hover {
+	color: #3565A3;
+}
+
+/*审批设置*/
+.list_department {
+	float: left;
+	width: 300px;
+	height: 240px;
+	overflow-y: auto;
+	clear: both;
+	border: 1px solid #ddd;
+}
+.tree {
+	margin: 0px;
+	padding: 5px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 18px;
+}
+.tree li {
+	white-space: nowrap;
+}
+.tree li ul {
+	margin: 0px;
+	padding: 0px;
+}
+.tree-node {
+	height: 18px;
+	white-space: nowrap;
+	cursor: pointer;
+}
+.tree-indent {
+	display: inline-block;
+	width: 16px;
+	height: 18px;
+	vertical-align: middle;
+}
+.tree-hit {
+	cursor: pointer;
+}
+.tree-expanded {
+	width: 16px;
+	height: 18px;
+	vertical-align: middle;
+	display: inline-block;
+	background: url("../../images/tripmanager/tree_arrows.gif") no-repeat -18px 0;
+}
+.tree-folder {
+	width: 22px;
+	height: 20px;
+	vertical-align: middle;
+	display: inline-block;
+	background: url("../../images/tripmanager/tree_folder.gif") no-repeat 0 0;
+}
+.tree-folder-open {
+	background: url("../../images/tripmanager/tree_folder.gif") no-repeat 0 0;
+}
+.tree-file {
+	width: 22px;
+	height: 20px;
+	vertical-align: middle;
+	display: inline-block;
+	background: url("images/tree_file.gif") no-repeat 0 0;
+}
+.tree-title {
+	padding: 1px 2px;
+	text-decoration: none;
+	vertical-align: middle;
+	display: inline-block;
+	white-space: nowrap;
+}
+.tree-node-hover {
+	background-image: none;
+	background-color: rgb(250, 250, 250);
+}
+.icon-ok {
+	background: url("../../images/tripmanager/tree_folder.gif") no-repeat 0 0;
+}
+.icon-dept {
+	background: url("../../images/tripmanager/tree_arrows.gif") no-repeat 0 0;
+}
+/*=S 左侧菜单*/
+.member_sidenav {
+	float: left;
+	width: 168px;
+	margin-right: 10px;
+	padding: 5px 0px 10px;
+	border: 1px solid #B42656;
+}
+.member_submenu dt {
+	margin-top: 5px;
+	padding: 6px 0 6px 35px;
+	font-size: 14px;
+	font-weight: bold;
+	border-top: 1px dotted #ddd;
+}
+.member_submenu dt.bdnone {
+	border: 0 none;
+}
+.member_submenu dd {
+	height: 24px;
+	padding: 0 0 0 50px;
+	line-height: 24px;
+}
+.member_submenu dt.current, .member_submenu dd.current {
+	color: #FFF;
+	background: url(../../images/common/un_bg_gradients.png) repeat-x 0 -260px #BB3260;
+}
+.member_mainnav {
+	float: left;
+	width: 768px;
+}
+.memberbox {
+	margin-bottom: 10px;
+	border: 1px solid #ddd;
+}
+.memberbox .tit_memberbox {
+	height: 26px;
+	padding: 0 10px;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 26px;
+	border-bottom: 1px solid #e6e6e6;
+	background: url(../../images/common/un_index.png) repeat-x 0 -168px;
+}
+.memberbox .tit_memberbox span {
+	font-size: 12px;
+	font-weight: normal;
+}
+/*=E 左侧菜单*/
